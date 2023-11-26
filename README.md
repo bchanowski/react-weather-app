@@ -4,7 +4,7 @@ To start the app:
 - npm install / yarn install
 - npm start / yarn start  
 
-Or check it at: https://weather-app-f8f5f.web.app (firebase hosting)
+Or check it at: https://react-weather-app-7.web.app/ (firebase hosting)
 
 Web Application created in React that's purpose is to show current(and hourly/daily) weather conditions in locations around the globe. Both metric and imperial units are supported as well as geolocation to show the data for users current location.   
 
