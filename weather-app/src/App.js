@@ -17,11 +17,16 @@ function App() {
   useEffect(() => {
     const fetchWeather = async () => {
       const message = query.q ? query.q : "current location";
-      toast.info("Fetching data for " + message);
-      await getFormattedWeatherData({ ...query, units }).then((data) => {
-        toast.success("Fetched data for " + data.name + ", " + data.country);
-        setWeather(data);
-      });
+      await toast.promise(
+        getFormattedWeatherData({ ...query, units }).then((data) => {
+          setWeather(data);
+        }),
+        {
+          pending: "Fetching data for " + message,
+          success: "Fetched data!",
+          error: "Couldn't fetch data!",
+        }
+      );
     };
 
     fetchWeather();
@@ -52,13 +57,11 @@ function App() {
     >
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={true}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        pauseOnHover
       />
       <TopButtons setQuery={setQuery} />
       <SearchBar setQuery={setQuery} units={units} setUnits={setUnits} />

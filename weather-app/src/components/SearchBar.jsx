@@ -9,6 +9,12 @@ function SearchBar({ setQuery, units, setUnits }) {
     if (city !== "") setQuery({ q: city });
   };
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter" && city !== "") {
+      setQuery({ q: city });
+    }
+  };
+
   const handleLocationClick = () => {
     if (navigator.geolocation) {
       toast.info("Fetching users location");
@@ -36,6 +42,7 @@ function SearchBar({ setQuery, units, setUnits }) {
         <input
           value={city}
           onChange={(e) => setCity(e.currentTarget.value)}
+          onKeyDown={handleEnter}
           type="text"
           placeholder="Type City...."
           className="text-xl font-light p-2 w-full shadow-xl outline-none capitalize"
